@@ -1,0 +1,15 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<main class="content">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <p>Opravdu chceš smazat "{{obj}}"? {{notice}}</p>
+        <a href="{{request.META.HTTP_REFERER}}">Zpět</a>
+        <input type="submit" value="Smazat">
+    </form>
+</main>
+
+{% endblock %}
+

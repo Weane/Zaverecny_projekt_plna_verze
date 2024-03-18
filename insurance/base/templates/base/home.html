@@ -1,0 +1,25 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<main class="content">
+
+    <a href="{% url 'create-policyholder' %}">Vytvoř pojistníka</a>
+
+    <table>
+        <tr>
+            <th>Jméno</th>
+            <th>Adresa</th>
+            <th>Telefon</th>
+        </tr>
+        {% for policyholder in policyholders %}
+        <tr>
+            <td><a href="{% url 'policyholder-detail' policyholder.id %}">{{policyholder.first_name}} {{policyholder.last_name}}</a></td>
+            <td>{{policyholder.address}}, {{policyholder.city}}</td>
+            <td>{{policyholder.phone}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+
+{% endblock %}

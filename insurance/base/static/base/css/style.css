@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #E6DED0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar a {
+    font-family: Verdana;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: #8B6C5C;
+}
+
+.active {
+    background-color: #A08679;
+}
+
+.content {
+    margin: 100px 50px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #E6DED0;
+}

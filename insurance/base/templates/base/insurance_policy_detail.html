@@ -1,0 +1,16 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<main class="content">
+    <p>Typ pojištění: {{insurance_policy.policy_type}} </p>
+    <p>Platnost od: {{insurance_policy.effective_date}} do: {{insurance_policy.expire_date}}</p>
+    <p>Celková cena: {{insurance_policy.total_amount}}</p>
+    <p>Placeno: {{insurance_policy.payment_option}}</p>
+    <p>Pojistník: <a href="{% url 'policyholder-detail'  insurance_policy.holder.id%}">{{insurance_policy.holder}}</a></p>
+    <a href="{% url 'create-claim' insurance_policy.id %}">Vytvoř událost</a>
+    <a href="{% url 'update-claim' insurance_policy.id %}">Upravit událost</a>
+    <a href="{% url 'delete-claim' insurance_policy.id %}">Smazat událost</a>
+</main>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}" type="text/css">
+    <title>Insurance Company</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'home' %}">Pojišťovna a.s.</a> </li>
+            <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Pojištěnci</a></li>
+            <li><a href="{% url 'insurance-policy' %}" class="{% if request.resolver_match.url_name == 'insurance-policy' %}active{% endif %}">Pojištění</a></li>
+            <li><a href="{% url 'claims' %}" class="{% if request.resolver_match.url_name == 'claims' %}active{% endif %}">Události</a></li>
+            <li><a href="#">O Aplikaci</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}
+
+
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<main class="content">
+    <p>Jméno: {{policyholder.first_name}} {{policyholder.last_name}}</p>
+    <p>Email: {{policyholder.email}}</p>
+    <p>Telefon: {{policyholder.phone}}</p>
+    <p>Adresa: {{policyholder.address}}</p>
+    <p>Město: {{policyholder.city}}</p>
+    <a href="{% url 'create-insurance-policy' policyholder.id %}">Vytvoř pojištění</a>
+    <a href="{% url 'update-policyholder' policyholder.id %}">Uprav pojištěnce</a>
+    <a href="{% url 'delete-policyholder' policyholder.id %}">Smaž pojištěnce</a>
+
+    <table>
+        <tr>
+            <th>Typ pojištění</th>
+            <th>Celková částka</th>
+            <th>Platí do</th>
+            <th>Akce</th>
+        </tr>
+        {% for policy in insurance_policies %}
+        <tr>
+            <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
+            <td>{{policy.total_amount}}</td>
+            <td>{{policy.expire_date}}</td>
+            <td><a href="{% url 'update-insurance-policy' policy.id %}">Uprav pojištění</a>
+                <a href="{% url 'delete-insurance-policy' policy.id %}">Smaž pojištění</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</main>
+
+{% endblock %}

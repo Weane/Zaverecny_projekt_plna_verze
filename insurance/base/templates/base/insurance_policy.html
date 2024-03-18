@@ -1,0 +1,24 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+<main class="content">
+    <table>
+        <tr>
+            <th>Typ pojištění</th>
+            <th>Celková částka</th>
+            <th>Platí do</th>
+            <th>Pojistník</th>
+        </tr>
+        {% for policy in insurance_policies %}
+        <tr>
+            <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
+            <td>{{policy.total_amount}}</td>
+            <td>{{policy.expire_date}}</td>
+            <td><a href="{% url 'policyholder-detail'  policy.holder.id%}">{{policy.holder}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+
+{% endblock %}
