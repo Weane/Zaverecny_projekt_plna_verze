@@ -23,7 +23,6 @@ class InsurancePolicy(models.Model):
     holder = models.ForeignKey(Policyholder, on_delete=models.CASCADE)
     effective_date = models.DateField()
     expire_date = models.DateField()
-    payment_option = models.CharField(max_length=20)
     total_amount = models.IntegerField()
     policy_type = models.CharField(max_length=50)
 
@@ -39,8 +38,10 @@ class InsuranceClaim(models.Model):
     policy = models.ForeignKey(InsurancePolicy, on_delete=models.SET_NULL, null=True)
     amount = models.IntegerField()
     description = models.TextField()
-    date = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __str__(self):
         return self.description

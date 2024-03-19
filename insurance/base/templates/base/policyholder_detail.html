@@ -24,8 +24,8 @@
             <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
             <td>{{policy.total_amount}}</td>
             <td>{{policy.expire_date}}</td>
-            <td><a href="{% url 'update-insurance-policy' policy.id %}">Uprav pojištění</a>
-                <a href="{% url 'delete-insurance-policy' policy.id %}">Smaž pojištění</a></td>
+            <td><a href="{% url 'update-insurance-policy' policy.id %}">Upravit</a>
+                <a href="{% url 'delete-insurance-policy' policy.id %}">Smazat</a></td>
         </tr>
         {% endfor %}
     </table>

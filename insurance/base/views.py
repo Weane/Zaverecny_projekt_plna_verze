@@ -20,7 +20,8 @@ def policyholder_detail(request, pk):
 
 def insurance_policy_detail(request, pk):
     insurance_policy = InsurancePolicy.objects.get(id=pk)
-    context = {'insurance_policy': insurance_policy}
+    claims = insurance_policy.insuranceclaim_set.all()
+    context = {'insurance_policy': insurance_policy, 'claims': claims}
     return render(request, 'base/insurance_policy_detail.html', context)
 
 

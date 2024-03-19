@@ -9,8 +9,22 @@
     <p>Placeno: {{insurance_policy.payment_option}}</p>
     <p>Pojistník: <a href="{% url 'policyholder-detail'  insurance_policy.holder.id%}">{{insurance_policy.holder}}</a></p>
     <a href="{% url 'create-claim' insurance_policy.id %}">Vytvoř událost</a>
-    <a href="{% url 'update-claim' insurance_policy.id %}">Upravit událost</a>
-    <a href="{% url 'delete-claim' insurance_policy.id %}">Smazat událost</a>
+    <table>
+        <tr>
+            <th>Vytvořena</th>
+            <th>Vyplacená částka</th>
+            <th>Popis</th>
+            <th></th>
+        </tr>
+        {% for claim in claims %}
+        <tr>
+            <td>{{claim.created|date:"j. n. Y G:i"}}</td>
+            <td>{{claim.amount}}</td>
+            <td>{{claim.description}}</td>
+            <td><a href="{% url 'update-claim' claim.id %}">Upravit</a> <a href="{% url 'delete-claim' claim.id %}">Smazat</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 </main>
 
 {% endblock %}

@@ -6,7 +6,7 @@
     <table>
         <tr>
             <th>Pojistník</th>
-            <th>Datum události</th>
+            <th>Vytvořena</th>
             <th>Vyplacená částka</th>
             <th>Popis</th>
             <th>Pojištění</th>
@@ -14,7 +14,7 @@
         {% for claim in claims %}
         <tr>
             <td><a href="{% url 'policyholder-detail' claim.holder.id %}">{{claim.holder.first_name}} {{claim.holder.last_name}}</a></td>
-            <td>{{claim.date|date:"j. n. Y G:i"}}</td>
+            <td>{{claim.created|date:"j. n. Y G:i"}}</td>
             <td>{{claim.amount}}</td>
             <td>{{claim.description}}</td>
             <td>{{claim.policy}}</td>
