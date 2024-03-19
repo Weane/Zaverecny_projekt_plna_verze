@@ -3,6 +3,23 @@ body {
     max-width: 900px;
 }
 
+.messages{
+    list-style-type: none;
+    margin-top: 50px;
+    padding: 5px;
+    width: 100%;
+}
+
+.success {
+    color: #2E7D32;
+    background-color: #C8E6C9;
+}
+
+.error {
+    color: #FF1D18;
+    background-color: #FFB3B2;
+}
+
 .navbar ul {
     list-style-type: none;
     margin: 0;

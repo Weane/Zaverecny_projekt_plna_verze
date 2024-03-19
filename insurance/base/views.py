@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Policyholder, InsurancePolicy, InsuranceClaim
 from .forms import PolicyholderForm, InsurancePolicyForm, ClaimForm
 
@@ -37,6 +38,7 @@ def create_policyholder(request):
         form = PolicyholderForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Pojištěnec byl přidán.')
             return redirect('home')
     context = {'form': form}
     return render(request, 'base/input_form.html', context)
@@ -50,6 +52,7 @@ def update_policyholder(request, pk):
         form = PolicyholderForm(request.POST, instance=policyholder)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Pojištěnec byl aktualizován.')
             return redirect('policyholder-detail', policyholder.id)
 
     context = {'form': form}
@@ -61,6 +64,7 @@ def delete_policyholder(request, pk):
 
     if request.method == 'POST':
         policyholder.delete()
+        messages.error(request, 'Pojištěnec byl smazán.')
         return redirect('home')
     context = {'obj': policyholder, 'notice': "A všechna jeho pojištění!"}
     return render(request, 'base/delete.html', context)
@@ -76,6 +80,7 @@ def create_insurance_policy(request, pk):
             insurance_policy = form.save(commit=False)
             insurance_policy.holder = policyholder
             insurance_policy.save()
+            messages.success(request, 'Pojištění bylo vytvořeno.')
             return redirect('policyholder-detail', policyholder.id)
     context = {'form': form, 'policyholder': policyholder}
     return render(request, 'base/input_form.html', context)
@@ -89,6 +94,7 @@ def update_insurance_policy(request, pk):
         form = InsurancePolicyForm(request.POST, instance=insurance_policy)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Pojištění bylo aktualizováno.')
             return redirect('policyholder-detail', insurance_policy.holder.id)
 
     context = {'form': form}
@@ -99,6 +105,7 @@ def delete_insurance_policy(request, pk):
     insurance_policy = InsurancePolicy.objects.get(id=pk)
     if request.method == 'POST':
         insurance_policy.delete()
+        messages.error(request, 'Pojištění bylo smazáno.')
         return redirect('policyholder-detail', insurance_policy.holder.id)
     context = {'obj': insurance_policy, 'notice': f'Pojištěnce: {insurance_policy.holder}'}
     return render(request, 'base/delete.html', context)
@@ -121,6 +128,7 @@ def create_claim(request, pk):
             claim.policy = insurance_policy
             claim.holder = insurance_policy.holder
             claim.save()
+            messages.success(request, 'Pojistná událost byla vytvořena.')
             return redirect('claims')
     context = {'form': form, 'insurance_policy': insurance_policy}
     return render(request, 'base/input_form.html', context)
@@ -134,6 +142,7 @@ def update_claim(request, pk):
         form = ClaimForm(request.POST, instance=claim)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Pojistná událost byla aktualizována.')
             return redirect('insurance-policy-detail', claim.policy.id)
 
     context = {'form': form}
@@ -144,6 +153,7 @@ def delete_claim(request, pk):
     claim = InsuranceClaim.objects.get(id=pk)
     if request.method == 'POST':
         claim.delete()
+        messages.error(request, 'Pojistná událost byla smazána.')
         return redirect('insurance-policy-detail', claim.policy.id)
     context = {'obj': claim, 'notice': f'Pojištěnce: {claim.holder}'}
     return render(request, 'base/delete.html', context)
