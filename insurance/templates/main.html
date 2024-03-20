@@ -17,7 +17,7 @@
         {% for message in messages %}
             {% if message.tags == "error" %}
                 <div class="alert alert-danger" role="alert">
-                    Chyba: {{ message }}
+                    Upozornění: {{ message }}
                 </div>
             {% elif message.tags == "success" %}
                 <div class="alert alert-success" role="alert">
