@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pojišťovna a.s.</title>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger" role="alert">
+                    Chyba: {{ message }}
+                </div>
+            {% elif message.tags == "success" %}
+                <div class="alert alert-success" role="alert">
+                    Zpráva: {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-primary" role="alert">
+                    Zpráva: {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    <script src="{% static 'base/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

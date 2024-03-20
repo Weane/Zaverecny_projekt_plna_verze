@@ -1,26 +1,32 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
 <main class="content">
-    <table>
-        <tr>
-            <th>Pojistník</th>
-            <th>Vytvořena</th>
-            <th>Vyplacená částka</th>
-            <th>Popis</th>
-            <th>Pojištění</th>
-        </tr>
-        {% for claim in claims %}
-        <tr>
-            <td><a href="{% url 'policyholder-detail' claim.holder.id %}">{{claim.holder.first_name}} {{claim.holder.last_name}}</a></td>
-            <td>{{claim.created|date:"j. n. Y G:i"}}</td>
-            <td>{{claim.amount}}</td>
-            <td>{{claim.description}}</td>
-            <td>{{claim.policy}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="table-responsive">
+        <table class="table table-responsive-md table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Pojistník</th>
+                    <th scope="col">Vytvořena</th>
+                    <th scope="col">Vyplacená částka</th>
+                    <th scope="col">Popis</th>
+                    <th scope="col">Pojištění</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for claim in claims %}
+                <tr>
+                    <td><a href="{% url 'policyholder-detail' claim.holder.id %}">{{claim.holder.first_name}} {{claim.holder.last_name}}</a></td>
+                    <td>{{claim.created|date:"j. n. Y G:i"}}</td>
+                    <td>{{claim.amount}}</td>
+                    <td>{{claim.description}}</td>
+                    <td>{{claim.policy}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </main>
 
 {% endblock %}

@@ -1,24 +1,30 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
 <main class="content">
-    <table>
-        <tr>
-            <th>Typ pojištění</th>
-            <th>Celková částka</th>
-            <th>Platí do</th>
-            <th>Pojistník</th>
-        </tr>
-        {% for policy in insurance_policies %}
-        <tr>
-            <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
-            <td>{{policy.total_amount}}</td>
-            <td>{{policy.expire_date}}</td>
-            <td><a href="{% url 'policyholder-detail'  policy.holder.id%}">{{policy.holder}}</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Typ pojištění</th>
+                    <th scope="col">Celková částka</th>
+                    <th scope="col">Platí do</th>
+                    <th scope="col">Pojistník</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for policy in insurance_policies %}
+                <tr>
+                    <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
+                    <td>{{policy.total_amount}}</td>
+                    <td>{{policy.expire_date}}</td>
+                    <td><a href="{% url 'policyholder-detail'  policy.holder.id%}">{{policy.holder}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </main>
 
 {% endblock %}

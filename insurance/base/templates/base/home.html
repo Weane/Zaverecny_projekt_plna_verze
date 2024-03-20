@@ -1,25 +1,30 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
 <main class="content">
 
-    <a href="{% url 'create-policyholder' %}">Vytvoř pojistníka</a>
-
-    <table>
-        <tr>
-            <th>Jméno</th>
-            <th>Adresa</th>
-            <th>Telefon</th>
-        </tr>
-        {% for policyholder in policyholders %}
-        <tr>
-            <td><a href="{% url 'policyholder-detail' policyholder.id %}">{{policyholder.first_name}} {{policyholder.last_name}}</a></td>
-            <td>{{policyholder.address}}, {{policyholder.city}}</td>
-            <td>{{policyholder.phone}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <a href="{% url 'create-policyholder' %}" class="btn btn-primary">Vytvoř pojištěnce</a>
+    <div class="table-responsive">
+        <table class="table table-responsive-md table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Jméno</th>
+                    <th scope="col">Adresa</th>
+                    <th scope="col">Telefon</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for policyholder in policyholders %}
+                <tr>
+                    <td><a href="{% url 'policyholder-detail' policyholder.id %}">{{policyholder.first_name}} {{policyholder.last_name}}</a></td>
+                    <td>{{policyholder.address}}, {{policyholder.city}}</td>
+                    <td>{{policyholder.phone}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </main>
 
 {% endblock %}

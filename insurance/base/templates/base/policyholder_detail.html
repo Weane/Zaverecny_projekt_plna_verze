@@ -1,4 +1,4 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
@@ -8,27 +8,33 @@
     <p>Telefon: {{policyholder.phone}}</p>
     <p>Adresa: {{policyholder.address}}</p>
     <p>Město: {{policyholder.city}}</p>
-    <a href="{% url 'create-insurance-policy' policyholder.id %}">Vytvoř pojištění</a>
-    <a href="{% url 'update-policyholder' policyholder.id %}">Uprav pojištěnce</a>
-    <a href="{% url 'delete-policyholder' policyholder.id %}">Smaž pojištěnce</a>
+    <a href="{% url 'create-insurance-policy' policyholder.id %}" class="btn btn-primary">Vytvoř pojištění</a>
+    <a href="{% url 'update-policyholder' policyholder.id %}" class="btn btn-warning">Uprav pojištěnce</a>
+    <a href="{% url 'delete-policyholder' policyholder.id %}" class="btn btn-danger">Smaž pojištěnce</a>
 
-    <table>
-        <tr>
-            <th>Typ pojištění</th>
-            <th>Celková částka</th>
-            <th>Platí do</th>
-            <th>Akce</th>
-        </tr>
-        {% for policy in insurance_policies %}
-        <tr>
-            <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
-            <td>{{policy.total_amount}}</td>
-            <td>{{policy.expire_date}}</td>
-            <td><a href="{% url 'update-insurance-policy' policy.id %}">Upravit</a>
-                <a href="{% url 'delete-insurance-policy' policy.id %}">Smazat</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Typ pojištění</th>
+                    <th scope="col">Celková částka</th>
+                    <th scope="col">Platí do</th>
+                    <th scope="col">Akce</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for policy in insurance_policies %}
+                <tr>
+                    <td><a href="{% url 'insurance-policy-detail' policy.id %}">{{policy.policy_type}}</a></td>
+                    <td>{{policy.total_amount}}</td>
+                    <td>{{policy.expire_date}}</td>
+                    <td><a href="{% url 'update-insurance-policy' policy.id %}" class="btn btn-warning">Upravit</a>
+                        <a href="{% url 'delete-insurance-policy' policy.id %}" class="btn btn-danger">Smazat</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 </main>
 

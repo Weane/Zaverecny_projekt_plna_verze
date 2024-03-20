@@ -1,4 +1,4 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
@@ -6,8 +6,8 @@
     <form method="POST" action="">
         {% csrf_token %}
         <p>Opravdu chceš smazat "{{obj}}"? {{notice}}</p>
-        <a href="{{request.META.HTTP_REFERER}}">Zpět</a>
-        <input type="submit" value="Smazat">
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Zpět</a>
+        <input type="submit" value="Smazat" class="btn btn-danger">
     </form>
 </main>
 

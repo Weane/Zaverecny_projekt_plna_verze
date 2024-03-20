@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    'crispy_bootstrap5',
     'base.apps.BaseConfig'
+
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # set up of template for crispy forms
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +61,9 @@ ROOT_URLCONF = 'insurance.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates'  # sets base directory for templates
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{% url 'home' %}" class="navbar-brand">Pojišťovna a.s.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Pojištěnci</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'insurance-policy' %}" class="nav-link {% if request.resolver_match.url_name == 'insurance-policy' %}active{% endif %}">Pojištění</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'claims' %}" class="nav-link {% if request.resolver_match.url_name == 'claims' %}active{% endif %}">Události</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">O Aplikaci</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

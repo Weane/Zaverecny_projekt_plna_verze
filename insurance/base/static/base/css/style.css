@@ -1,73 +1,11 @@
-body {
-    margin: 0;
-    max-width: 900px;
-}
-
-.messages{
-    list-style-type: none;
-    margin-top: 50px;
-    padding: 5px;
-    width: 100%;
-}
-
-.success {
-    color: #2E7D32;
-    background-color: #C8E6C9;
-}
-
-.error {
-    color: #FF1D18;
-    background-color: #FFB3B2;
-}
-
-.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #E6DED0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.navbar li {
-    float: left;
-}
-
-.navbar a {
-    font-family: Verdana;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar li a:hover:not(.active) {
-    background-color: #8B6C5C;
-}
-
-.active {
-    background-color: #A08679;
-}
-
 .content {
-    margin: 100px 50px;
+    margin: 10px 50px;
 }
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+    max-width: 900px;
 }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #E6DED0;
+.table-hover tbody tr:hover td {
+  background-color: #DDD;
 }

@@ -1,4 +1,4 @@
-{% extends 'base/main.html' %}
+{% extends 'main.html' %}
 
 {% block content %}
 
@@ -6,25 +6,30 @@
     <p>Typ pojištění: {{insurance_policy.policy_type}} </p>
     <p>Platnost od: {{insurance_policy.effective_date}} do: {{insurance_policy.expire_date}}</p>
     <p>Celková cena: {{insurance_policy.total_amount}}</p>
-    <p>Placeno: {{insurance_policy.payment_option}}</p>
     <p>Pojistník: <a href="{% url 'policyholder-detail'  insurance_policy.holder.id%}">{{insurance_policy.holder}}</a></p>
-    <a href="{% url 'create-claim' insurance_policy.id %}">Vytvoř událost</a>
-    <table>
-        <tr>
-            <th>Vytvořena</th>
-            <th>Vyplacená částka</th>
-            <th>Popis</th>
-            <th></th>
-        </tr>
-        {% for claim in claims %}
-        <tr>
-            <td>{{claim.created|date:"j. n. Y G:i"}}</td>
-            <td>{{claim.amount}}</td>
-            <td>{{claim.description}}</td>
-            <td><a href="{% url 'update-claim' claim.id %}">Upravit</a> <a href="{% url 'delete-claim' claim.id %}">Smazat</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <a href="{% url 'create-claim' insurance_policy.id %}" class="btn btn-primary">Vytvoř událost</a>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Vytvořena</th>
+                    <th scope="col">Vyplacená částka</th>
+                    <th scope="col">Popis</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for claim in claims %}
+                <tr>
+                    <td>{{claim.created|date:"j. n. Y G:i"}}</td>
+                    <td>{{claim.amount}}</td>
+                    <td>{{claim.description}}</td>
+                    <td><a href="{% url 'update-claim' claim.id %}" class="btn btn-warning">Upravit</a> <a href="{% url 'delete-claim' claim.id %}" class="btn btn-danger">Smazat</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </main>
 
 {% endblock %}
